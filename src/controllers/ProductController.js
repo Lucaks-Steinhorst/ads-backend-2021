@@ -1,13 +1,12 @@
 
-//const User = require("../models/User");
 import * as Yup from 'yup';
 import Product from "../models/Product.js";
 
 class ProductController {
 
     async list(req, res) {
-        // consultar no banco os usuários
-        Product.find({}).select("-nome").then((produtos) => {
+        // consultar no banco os produtos
+        Product.find({}).then((product) => {
             return res.json({
                 error: false,
                 product: product
@@ -22,7 +21,7 @@ class ProductController {
         }
 
     async listOne(req, res) {
-        Product.findOne({ _id: req.params.id }, '_id nome marca categoria createAt updateAt').then((produtos) => {
+        Product.findOne({ _id: req.params.id }, '_id nome marca categoria createdAt updatedAt').then((product) => {
             return res.json({
                 error: false,
                 product: product
